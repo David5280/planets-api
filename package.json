@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "knex": "^0.19.1",
     "pg": "^7.12.1"
   },
