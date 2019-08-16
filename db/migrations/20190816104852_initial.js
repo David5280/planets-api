@@ -4,20 +4,20 @@ exports.up = function(knex) {
       table.increments('id').primary();
       table.string('title');
       table.string('milesFromSun');
-      table.string('climate');
+      table.text('climate');
       table.string('sunRevolution');
       table.string('atmosphere');
-      table.integer('moons');
-      table.string('Description');
-      table.decimal('travelTime');
+      table.string('moons');
+      table.text('description');
+      table.string('travelTime');
       table.string('diameter');
-      table.decimal('gravity');
+      table.string('gravity');
       table.string('averageTemp');
       table.string('dayLength');
       table.string('image');
       table.string('namesake');
       table.string('discovery');
-      table.string('successfulMissions');
+      table.text('successfulMissions');
       table.string('image2');
       table.string('cutout');
       table.timestamps(true, true)
@@ -37,7 +37,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return Promise.all([
-    knex.schema.dropTable('planets'),
-    knex.schema.dropTable('moons')
+    knex.schema.dropTable('moons'),
+    knex.schema.dropTable('planets')
   ])
 };

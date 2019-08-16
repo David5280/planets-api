@@ -1,12 +1,14 @@
 const planets = require('../../../planetData.js');
 const moons = require('../../../moons.js');
 
-const mashData = (planets, moons) => {
+const mashData = () => {
   return planets.reduce((acc, planet) => {
     planet.moonsArr = [];
     moons.forEach(moon => {
       if (moon.hostPlanet === planet.title) {
-        planet.moonsArr.push(moon.moons)
+        moon.moons.forEach(moon => {
+          planet.moonsArr.push(moon)
+        })
       } 
     })
     acc.push(planet)
@@ -14,22 +16,41 @@ const mashData = (planets, moons) => {
   }, [])
 }
 
-const data = mashData(planets, moons)
+const data = mashData()
 
 const createPlanets = (knex, planet) => {
-  return knex('planets').insert(
-    planet, 'id')
+  return knex('planets').insert({
+      title: planet.title,
+      milesFromSun: planet.milesFromSun,
+      climate: planet.climate,
+      sunRevolution: planet.sunRevolution,
+      atmosphere: planet.atmosphere,
+      moons: planet.moons,
+      description: planets.description,
+      travelTime: planets.travelTime,
+      diameter: planets.diameter,
+      gravity: planet.gravity,
+      averageTemp: planet.averageTemp,
+      dayLength: planet.dayLength,
+      image: planet.image,
+      namesake: planet.namesake,
+      discovery: planet.discovery,
+      successfulMissions: planet.successfulMissions,
+      image2: planet.image2,
+      cutout: planet.cutout
+    }, 'id')
   .then(planetId => {
     let moonPromises = [];
-
-    planets.moonsArr.forEach(moon => {
-      moonPromises.push(
-        createMoon(knex, {
-          moon: moon,
-          hostPlanet: moon.hostPlanet,
-          planetId: planetId[0]
-        })
-      )
+    data.forEach(planet => {
+      planet.moonsArr.forEach(moon => {
+        moonPromises.push(
+          createMoon(knex, {
+            moon: moon,
+            hostPlanet: moon.hostPlanet,
+            planetId: planetId[0]
+          })
+        )
+      })
     });
 
     return Promise.all(moonPromises);
@@ -46,7 +67,7 @@ exports.seed = (knex) => {
     .then(() => {
       let planetPromises = [];
 
-      planets.forEach(planet => {
+      data.forEach(planet => {
         planetPromises.push(createPlanets(knex, planet));
       });
 
