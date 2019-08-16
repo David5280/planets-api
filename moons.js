@@ -1,4 +1,4 @@
-const moons = {
+module.exports = {
   mercury: ["Hermes (destroyed)"],
   venus: ["Neith (destroyed)"],
   earth: ["Moon"],
@@ -10,5 +10,4 @@ const moons = {
   pluto: ["Charon","Styx","Nix","Kerberos","Hydra"]
 };
 
-export default moons;
 

@@ -1,4 +1,4 @@
-const planets = [
+module.exports = [
   {
     "title": "Mercury",
     "milesFromSun": "35.98 million",
@@ -17,7 +17,6 @@ const planets = [
     "discovery": "Known to the ancients and visible to the naked eye",
     "successfulMissions": "Mariner 10, MESSENGER",
     "image2": "https://cosmos-magazine.imgix.net/file/spina/photo/3385/080316_mercury_1.png?ixlib=rails-1.1.0&h=820&w=1061",
-    "id": 1,
     "cutout": "https://vignette.wikia.nocookie.net/thesolarsystem6361/images/5/50/Mercury_spacepedia.png/revision/latest?cb=20180301162112"
   },
   {
@@ -38,7 +37,6 @@ const planets = [
     "discovery": "Known to the ancients and visible to the naked eye",
     "successfulMissions": "Mariner 2, Venera 4, Mariner 5, Venera 5, Venera 6, Venera 8, Mariner 10, Venera 9, Venera 10, Venera 11, Venera 12, Pioneer Venus 1, Pioneer Venus 2, Venera 13, Venera 14, Venera 15, Venera 16, Vega 1, Vega 2, Magellan, Galileo, Cassini, MESSENGER, Venus Express, Akatsuki, IKAROS",
     "image2": "https://vignette.wikia.nocookie.net/earth2308/images/d/dc/Venus.png/revision/latest?cb=20190228190727",
-    "id": 2,
     "cutout": "https://vignette.wikia.nocookie.net/thesolarsystem6361/images/6/6e/Venus_surface_spacepedia.png/revision/latest?cb=20180322151813"
   },
   {
@@ -59,7 +57,6 @@ const planets = [
     "discovery": "N/A",
     "successfulMissions": "N/A",
     "image2": "https://wallpaperstream.com/wallpapers/full/universe/Earth-Surface-Wallpaper.jpg",
-    "id": 3,
     "cutout": "https://theplanets.org/wp-content/uploads/2014/09/earth.png"
   },
   {
@@ -80,7 +77,6 @@ const planets = [
     "discovery": "Known to the ancients and visible to the naked eye",
     "successfulMissions": "Mariner 4, Mariner 6, Mariner 7, Mars 2, Mars 3, Mariner 9, Viking 1, Viking 2, Mars Global Surveyor, Mars Pathfinder, Sojourner, Mars Odyssey, Mars Express, Spirit, Opprutunity, Rosetta, Mars Reconnaissance Orbiter, Phoenex, Dawn, Curiosity, Mars Orbiter Mission, MAVEN, ExoMars Trace Gas Orbiter, InSight & MarCO",
     "image2": "https://cdn.mos.cms.futurecdn.net/br4FkqpBujNhxsTfxgtXdE.jpg",
-    "id": 4,
     "cutout": "https://i.dlpng.com/static/png/305213_preview.png"
   },
   {
@@ -101,7 +97,6 @@ const planets = [
     "discovery": "Known to the ancients and visible to the naked eye",
     "successfulMissions": "Cassini, Galileo, Voyager1, Voyager2, Pioneer11, Pioneer10",
     "image2": "https://cdn.vox-cdn.com/thumbor/J85lBLditBHKUEguiZh8rPEmWqg=/0x0:3805x1288/1200x675/filters:focal(1599x340:2207x948)/cdn.vox-cdn.com/uploads/chorus_image/image/59799667/pia21974.0.jpg",
-    "id": 5,
     "cutout": "https://www.solarsystemscope.com/spacepedia/images/handbook/renders/jupiter.png"
   },
   {
@@ -122,7 +117,6 @@ const planets = [
     "discovery": "Known to the ancients and visible to the naked eye",
     "successfulMissions": "Pioneer111, Voyager 1, Voyager 2, Cassini/Huygens",
     "image2": "https://cdn.mos.cms.futurecdn.net/pLmwQQDFY3i4Z4hAjXuDYS-1200-80.jpg",
-    "id": 6,
     "cutout": "https://i1.wp.com/freepngimages.com/wp-content/uploads/2016/04/saturn-transparent-background-planet-1.png?fit=797%2C620"
   },
   {
@@ -143,7 +137,6 @@ const planets = [
     "discovery": "1781 by William Hersche",
     "successfulMissions": "Voyager 2",
     "image2": "https://www.kuaf.com/sites/kuaf/files/styles/x_large/public/201907/pri_44829263.jpg",
-    "id": 7,
     "cutout": "https://www.coolaboo.com/wp-content/uploads/2019/03/Uranus.png"
   },
   {
@@ -164,7 +157,6 @@ const planets = [
     "discovery": 1846,
     "successfulMissions": "Voyager 2",
     "image2": "https://www.nasa.gov/sites/default/files/thumbnails/image/neptune_voyager1.jpg",
-    "id": 8,
     "cutout": "https://theplanets.org/wp-content/uploads/2014/09/neptune.png"
   },
   {
@@ -185,9 +177,7 @@ const planets = [
     "discovery": "1930 by Clyde Tombaugh",
     "successfulMissions": "New Horizons",
     "image2": "https://media.daysoftheyear.com/20171223131353/pluto-day.jpg",
-    "id": 9,
     "cutout": "https://www.solarsystemscope.com/spacepedia/images/handbook/renders/pluto.png"
   }
 ];
 
-export default planets;
