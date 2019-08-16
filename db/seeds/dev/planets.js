@@ -1,23 +1,38 @@
 const planets = require('../../../planetData.js');
 const moons = require('../../../moons.js');
 
-const createPlanet = (knex, planet) => {
+const mashData = (planets, moons) => {
+  return planets.reduce((acc, planet) => {
+    planet.moonsArr = [];
+    moons.forEach(moon => {
+      if (moon.hostPlanet === planet.title) {
+        planet.moonsArr.push(moon.moons)
+      } 
+    })
+    acc.push(planet)
+    return acc;
+  }, [])
+}
+
+const data = mashData(planets, moons)
+
+const createPlanets = (knex, planet) => {
   return knex('planets').insert(
     planet, 'id')
   .then(planetId => {
-    console.log(planetId)
-    // let moonPromises = [];
+    let moonPromises = [];
 
-    // paper.footnotes.forEach(footnote => {
-    //   footnotePromises.push(
-    //     createFootnote(knex, {
-    //       note: footnote,
-    //       paper_id: paperId[0]
-    //     })
-    //   )
-    // });
+    planets.moonsArr.forEach(moon => {
+      moonPromises.push(
+        createMoon(knex, {
+          moon: moon,
+          hostPlanet: moon.hostPlanet,
+          planetId: planetId[0]
+        })
+      )
+    });
 
-    return Promise.all(footnotePromises);
+    return Promise.all(moonPromises);
   })
 };
 
@@ -32,10 +47,10 @@ exports.seed = (knex) => {
       let planetPromises = [];
 
       planets.forEach(planet => {
-        planetPromises.push(createPlanet(knex, planet));
+        planetPromises.push(createPlanets(knex, planet));
       });
 
-      return Promise.all(paperPromises);
+      return Promise.all(planetPromises);
     })
     .catch(error => console.log(`Error seeding data: ${error}`));
 };
