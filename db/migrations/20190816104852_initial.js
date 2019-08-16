@@ -25,7 +25,6 @@ exports.up = function(knex) {
 
     knex.schema.createTable('moons', function(table) {
       table.increments('id').primary();
-      table.string('hostPlanet');
       table.string('moon');
       table.integer('planetId').unsigned();
       table.foreign('planetId')

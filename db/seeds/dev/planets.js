@@ -26,9 +26,9 @@ const createPlanets = (knex, planet) => {
       sunRevolution: planet.sunRevolution,
       atmosphere: planet.atmosphere,
       moons: planet.moons,
-      description: planets.description,
-      travelTime: planets.travelTime,
-      diameter: planets.diameter,
+      description: planet.description,
+      travelTime: planet.travelTime,
+      diameter: planet.diameter,
       gravity: planet.gravity,
       averageTemp: planet.averageTemp,
       dayLength: planet.dayLength,
@@ -41,16 +41,13 @@ const createPlanets = (knex, planet) => {
     }, 'id')
   .then(planetId => {
     let moonPromises = [];
-    data.forEach(planet => {
       planet.moonsArr.forEach(moon => {
         moonPromises.push(
           createMoon(knex, {
             moon: moon,
-            hostPlanet: moon.hostPlanet,
             planetId: planetId[0]
           })
         )
-      })
     });
 
     return Promise.all(moonPromises);
