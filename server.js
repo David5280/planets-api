@@ -32,9 +32,18 @@ app.get('/api/v1/planets/:id', (req, res) => {
     .select('*')
     .limit(1)
     .where({ id:  req.params.id})
-    .then(book => res.status(200).json(book))
+    .then(planet => res.status(200).json(planet))
     .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
-})
+});
+
+app.get('/api/v1/moons/:id', (req, res) => {
+  dbConnection('moons')
+    .select('*')
+    .limit(1)
+    .where({ id:  req.params.id})
+    .then(moon => res.status(200).json(moon))
+    .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
