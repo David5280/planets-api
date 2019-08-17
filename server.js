@@ -1,9 +1,10 @@
 const express = require('express');
 const morgan = require('morgan')
-const Joi = require('joi')
 const dbConnection = require('./db/seeds/dev/connection')
 const app = express();
 const environment = process.env.NODE_ENV || 'development';
+const configuration = require('./knexfile')[environment];
+const database = require('knex')(configuration)
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Planets API';
@@ -68,31 +69,6 @@ app.get('/api/v1/moons/:id', (req, res) => {
 });
 
 app.post('/api/v1/planets', (req, res) => {
-  const schema = {
-    title: Joi.string().min(1).required(),
-    milesFromSun: Joi.string().min(1).required(),
-    climate: Joi.string().min(1).required(),
-    sunRevolution: Joi.string().min(1).required(),
-    atmosphere: Joi.string().min(1).required(),
-    moons: Joi.string().min(1).required(),
-    description: Joi.string().min(25).required(),
-    travelTime: Joi.string().min(1).required(),
-    diameter: Joi.string().min(1).required(),
-    gravity: Joi.string().min(1).required(),
-    averageTemp: Joi.string().min(1).required(),
-    dayLength: Joi.string().min(1).required(),
-    image: Joi.string().min(5).required(),
-    namesake: Joi.string().min(1).required(),
-    discovery: Joi.string().min(1).required(),
-    successfulMissions: Joi.string().min(1).required(),
-    image2: Joi.string().min(1).required(),
-    cutout: Joi.string().min(1).required()
-  };
-  const result = Joi.validate(req.body, schema);
-  if(result.error) {
-    res.status(400).send(result.error.details[0].message);
-    return;
-  }
   const planet = {
     title: req.body.title,
     milesFromSun: req.body.milesFromSun,
@@ -113,8 +89,21 @@ app.post('/api/v1/planets', (req, res) => {
     image2: req.body.image2,
     cutout: req.body.cutout
   }
-  res.send(planet.title)
-})
+  for (let requiredParameter of ['title', 'milesFromSun', 'climate', 'sunRevolution', 'atmosphere', 'moons', 'description', 'travelTime', 'diameter', 'gravity', 'averageTemp', 'dayLength', 'image', 'namesake', 'discovery', 'successfulMissions', 'image2', 'cutout']) {
+    if (!planet[requiredParameter]) {
+      return res 
+        .status(422)
+        .send({ error: `You're missing a "${requiredParameter}" property.` });
+    }
+  }
+  database('planets').insert(planet, 'id')
+    .then(planet => {
+      res.status(201).json({ id: planet[0] })
+    })
+    .catch(error => {
+      res.status(500).json({ error })
+    })
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
