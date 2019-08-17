@@ -1,10 +1,13 @@
 const express = require('express');
+const morgan = require('morgan')
 const app = express();
 const dbConnection = require('./db/seeds/dev/connection')
 const environment = process.env.NODE_ENV || 'development';
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Planets API';
+
+app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'))
 
 app.get('/', (request, response) => {
   response.send('Planets server is running');
