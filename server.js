@@ -16,16 +16,25 @@ app.get('/', (request, response) => {
 app.get('/api/v1/planets', (req, res) => {
   dbConnection('planets')
     .select('*')
-    .then(planets => res.json(planets))
-    .catch(error => res.json({ error: error.message, stack: error.stack }))
+    .then(planets => res.status(200).json(planets))
+    .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
 });
 
 app.get('/api/v1/moons', (req, res) => {
   dbConnection('moons')
     .select('*')
-    .then(moons => res.json(moons))
-    .catch(error => res.json({ error: error.message, stack: error.stack }))
+    .then(moons => res.status(200).json(moons))
+    .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
 });
+
+app.get('/api/v1/planets/:id', (req, res) => {
+  dbConnection('planets')
+    .select('*')
+    .limit(1)
+    .where({ id:  req.params.id})
+    .then(book => res.status(200).json(book))
+    .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
+})
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
