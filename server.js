@@ -12,6 +12,10 @@ app.locals.title = 'Planets API';
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'));
 app.use(express.json());
 
+app.listen(app.get('port'), () => {
+  console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
+});
+
 app.get('/', (request, response) => {
   response.send('Planets server is running');
 });
@@ -69,6 +73,13 @@ app.get('/api/v1/moons/:id', (req, res) => {
 });
 
 app.post('/api/v1/planets', (req, res) => {
+  for (let requiredParameter of ['title', 'milesFromSun', 'climate', 'sunRevolution', 'atmosphere', 'moons', 'description', 'travelTime', 'diameter', 'gravity', 'averageTemp', 'dayLength', 'image', 'namesake', 'discovery', 'successfulMissions', 'image2', 'cutout']) {
+    if (!planet[requiredParameter]) {
+      return res 
+        .status(422)
+        .send({ error: `You're missing a "${requiredParameter}" property.` });
+    }
+  }
   const planet = {
     title: req.body.title,
     milesFromSun: req.body.milesFromSun,
@@ -89,19 +100,12 @@ app.post('/api/v1/planets', (req, res) => {
     image2: req.body.image2,
     cutout: req.body.cutout
   }
-  for (let requiredParameter of ['title', 'milesFromSun', 'climate', 'sunRevolution', 'atmosphere', 'moons', 'description', 'travelTime', 'diameter', 'gravity', 'averageTemp', 'dayLength', 'image', 'namesake', 'discovery', 'successfulMissions', 'image2', 'cutout']) {
-    if (!planet[requiredParameter]) {
-      return res 
-        .status(422)
-        .send({ error: `You're missing a "${requiredParameter}" property.` });
-    }
-  }
   database('planets').insert(planet, 'id')
     .then(planet => {
       res.status(201).json({ id: planet[0] })
     })
     .catch(error => {
-      res.status(500).json({ error })
+      res.status(500).json({ error: error.message, stack: error.stack })
     })
 });
 
@@ -115,14 +119,14 @@ app.post('/api/v1/moons', async (req, res) => {
   }
   getForeignId = async () => {
     const planets = await dbConnection('planets')
-      .select('title', "id")
+      .select('title', 'id')
     const matchingPlanet = await planets.find(planet => {
         if (planet.title === req.body.hostPlanet) {
           return planet.id
         }
       })
       if (!await matchingPlanet) {
-        return res.status(404).send('No host planet with the given name was found.')
+        return res.status(404).send(`No host planet with named ${req.body.hostPlanet} was found.`)
       }
     return await matchingPlanet.id
   }
@@ -135,11 +139,31 @@ app.post('/api/v1/moons', async (req, res) => {
       res.status(201).json({ id: moon[0] })
     })
     .catch(error => {
-      res.status(500).json({ error })
+      res.status(500).json({ error: error.message, stack: error.stack })
     })
 });
 
-app.listen(app.get('port'), () => {
-  console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
+app.delete('/api/v1/planets/:id', (req, res) => {
+  const requestId = req.params.id;
+  dbConnection('planets')
+    .where({ id: requestId })
+    .del()
+    .then(() => res.status(202).json({ 
+      message: `Planet ${requestId} has been deleted`
+    }))
+    .catch(error => res.status(500).send(error))
 });
+
+app.delete('/api/v1/moons/:id', (req, res) => {
+  const requestId = req.params.id;
+  dbConnection('moons')
+    .where({ id: requestId })
+    .del()
+    .then(() => res.status(202).json({ 
+      message: `Moon ${requestId} has been deleted`
+    }))
+    .catch(error => res.status(500).send(error))
+});
+
+
   
