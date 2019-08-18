@@ -12,7 +12,7 @@ const mashData = () => {
       } 
     })
     acc.push(planet)
-    return acc;
+    return acc.sort();
   }, [])
 }
 

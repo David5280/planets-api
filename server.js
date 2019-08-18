@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan')
-const dbConnection = require('./db/seeds/dev/connection')
+const dbConnection = require('./db/seeds/connection')
 const app = express();
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
