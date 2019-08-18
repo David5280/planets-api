@@ -80,6 +80,7 @@ app.post('/api/v1/planets', (req, res) => {
         .send({ error: `You're missing a "${requiredParameter}" property.` });
     }
   }
+
   const planet = {
     title: req.body.title,
     milesFromSun: req.body.milesFromSun,
@@ -100,6 +101,7 @@ app.post('/api/v1/planets', (req, res) => {
     image2: req.body.image2,
     cutout: req.body.cutout
   }
+  
   database('planets').insert(planet, 'id')
     .then(planet => {
       res.status(201).json({ id: planet[0] })
@@ -117,6 +119,7 @@ app.post('/api/v1/moons', async (req, res) => {
         .send({ error: `You're missing a "${requiredParameter}" property.` });
     }
   }
+
   getForeignId = async () => {
     const planets = await dbConnection('planets')
       .select('title', 'id')
@@ -126,14 +129,16 @@ app.post('/api/v1/moons', async (req, res) => {
         }
       })
       if (!await matchingPlanet) {
-        return res.status(404).send(`No host planet with named ${req.body.hostPlanet} was found.`)
+        return res.status(404).send(`No host planet named ${req.body.hostPlanet} was found.`)
       }
     return await matchingPlanet.id
   }
+
   const moon = {
     moon: req.body.title,
     planetId: await getForeignId()
   }
+
   await database('moons').insert(await moon, 'id')
     .then(moon => {
       res.status(201).json({ id: moon[0] })
