@@ -1,10 +1,10 @@
 const express = require('express');
-const morgan = require('morgan')
+const morgan = require('morgan');
 const dbConnection = require('./db/seeds/connection')
 const app = express();
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
-const database = require('knex')(configuration)
+const database = require('knex')(configuration);
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Planets API';
@@ -26,7 +26,7 @@ app.get('/api/v1/planets', (req, res) => {
     .then(planets => {
       if (!planets.length) {
         return res.status(404).send("Can't find planets at this time.")
-      }
+      };
       res.status(200).json(planets)
     })
     .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
@@ -38,7 +38,7 @@ app.get('/api/v1/moons', (req, res) => {
     .then(moons => {
       if (!moons.length) {
         return res.status(404).send("Can't find moons at this time.")
-      }
+      };
       res.status(200).json(moons)
     })
     .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
@@ -52,7 +52,7 @@ app.get('/api/v1/planets/:id', (req, res) => {
     .then(planet => {
       if (!planet.length) {
         return res.status(404).send("This planet does not exist.")
-      }
+      };
       res.status(200).json(planet)
     })
     .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
@@ -66,7 +66,7 @@ app.get('/api/v1/moons/:id', (req, res) => {
     .then(moon => {
       if (!moon.length) {
         return res.status(404).send("This moon does not exist.")
-      }
+      };
       res.status(200).json(moon)
     })
     .catch(error => res.status(500).json({ error: error.message, stack: error.stack }))
@@ -78,8 +78,8 @@ app.post('/api/v1/planets', (req, res) => {
       return res 
         .status(422)
         .send({ error: `You're missing a "${requiredParameter}" property.` });
-    }
-  }
+    };
+  };
 
   const planet = {
     title: req.body.title,

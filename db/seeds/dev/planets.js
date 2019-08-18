@@ -9,12 +9,12 @@ const mashData = () => {
         moon.moons.forEach(moon => {
           planet.moonsArr.push(moon)
         })
-      } 
+      }; 
     })
     acc.push(planet)
     return acc.sort();
   }, [])
-}
+};
 
 const data = mashData()
 
