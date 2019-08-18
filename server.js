@@ -74,7 +74,7 @@ app.get('/api/v1/moons/:id', (req, res) => {
 
 app.post('/api/v1/planets', (req, res) => {
   for (let requiredParameter of ['title', 'milesFromSun', 'climate', 'sunRevolution', 'atmosphere', 'moons', 'description', 'travelTime', 'diameter', 'gravity', 'averageTemp', 'dayLength', 'image', 'namesake', 'discovery', 'successfulMissions', 'image2', 'cutout']) {
-    if (!planet[requiredParameter]) {
+    if (!req.body[requiredParameter]) {
       return res 
         .status(422)
         .send({ error: `You're missing a "${requiredParameter}" property.` });
