@@ -15,7 +15,7 @@ Clone down this repo, install the dependencies (npm install), and start the serv
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/planets | "GET"  | Not Needed
+| http://localhost:3000/api/v1/planets | "GET"  | Not Needed |
 **Response is an array of all planets in database:** [{<br />
 * id: 88,
 * title: "Venus",
@@ -43,7 +43,7 @@ Clone down this repo, install the dependencies (npm install), and start the serv
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/moons | "GET"  | Not Needed
+| http://localhost:3000/api/v1/moons | "GET"  | Not Needed |
 **Response is an array of all moons in database:** [{<br />
 * id: 88,
 * moon: "Deimos"
@@ -55,7 +55,7 @@ Clone down this repo, install the dependencies (npm install), and start the serv
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/planets/:id | "GET"  | Not Needed
+| http://localhost:3000/api/v1/planets/:id | "GET"  | Not Needed |
 Response is a single planet object with matching id: {<br />
 * id: 88,
 * title: "Venus",
@@ -83,7 +83,7 @@ Response is a single planet object with matching id: {<br />
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/moons/:id | "GET"  | Not Needed
+| http://localhost:3000/api/v1/moons/:id | "GET"  | Not Needed |
 **Response is a single moon object with matching id:** {<br />
 * id: 88,
 * moon: "Deimos"
@@ -95,7 +95,7 @@ Response is a single planet object with matching id: {<br />
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/planets | "POST"  | **title**: *string* name of planet,<br />**milesFromSun**: *string*,<br /> **climate**: *string* brief description,<br /> **sunRevolution**: *string* length of one year,<br />**atmosphere**: *string* list of gases present,<br />**moons**: *string* number of moons,<br />**description**: *string* description of planet,<br />**travelTime**: *string* length relative to one earth year,<br />**diameter**: *string* miles in diameter,<br />**gravity**: *string* relative to Earth's gravity,<br />**averageTemp**: *string* Farenheight,<br />**dayLength**: *string* Number of Earth Days,<br />**image**: *string* image url,<br />**namesake**: *string* ,<br />**discovery**: *string* year and name if available,<br />**successfulMissions**: *string* list of successful spacecrafts,<br />**image2**: *string* second image url,<br />**cutout**: *string* cutout of planet,
+| http://localhost:3000/api/v1/planets | "POST"  | **title**: *string* name of planet,<br />**milesFromSun**: *string*,<br /> **climate**: *string* brief description,<br /> **sunRevolution**: *string* length of one year,<br />**atmosphere**: *string* list of gases present,<br />**moons**: *string* number of moons,<br />**description**: *string* description of planet,<br />**travelTime**: *string* length relative to one earth year,<br />**diameter**: *string* miles in diameter,<br />**gravity**: *string* relative to Earth's gravity,<br />**averageTemp**: *string* Farenheight,<br />**dayLength**: *string* Number of Earth Days,<br />**image**: *string* image url,<br />**namesake**: *string* ,<br />**discovery**: *string* year and name if available,<br />**successfulMissions**: *string* list of successful spacecrafts,<br />**image2**: *string* second image url,<br />**cutout**: *string* cutout of planet |
 **Response is the newly generated id of the new planet:** {<br />
 * id: 88,
 <br />}
@@ -104,7 +104,7 @@ Response is a single planet object with matching id: {<br />
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/moons | "POST"  | **moon**: *string* name of moon,<br />**hostPlanet**: *string* name of planet it orbits<br /> 
+| http://localhost:3000/api/v1/moons | "POST"  | **moon**: *string* name of moon,<br />**hostPlanet**: *string* name of planet it orbits<br /> |
 **Response is the newly generated id of the new moon:** {<br />
 * id: 187,
 <br />}
@@ -113,7 +113,7 @@ Response is a single planet object with matching id: {<br />
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/planets/:id | "DELETE"  | Not Needed
+| http://localhost:3000/api/v1/planets/:id | "DELETE"  | Not Needed |
 **Response is a confirmation of deletion:** {<br />
 * message: 'Planet [name of deleted planet] has been deleted.'<br />}
 
@@ -121,6 +121,6 @@ Response is a single planet object with matching id: {<br />
 
 | URL  | METHOD  | OPTIONS  
 |---|---|---|---|---|
-| http://localhost:3000/api/v1/moons/:id | "DELETE"  | Not Needed
+| http://localhost:3000/api/v1/moons/:id | "DELETE"  | Not Needed |
 **Response is a confirmation of deletion:** {<br />
 * message: 'Moon [name of deleted moon] has been deleted.'<br />}
