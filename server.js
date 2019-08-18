@@ -105,6 +105,40 @@ app.post('/api/v1/planets', (req, res) => {
     })
 });
 
+app.post('/api/v1/moons', async (req, res) => {
+  for (let requiredParameter of ['title', 'hostPlanet']) {
+    if (!req.body[requiredParameter]) {
+      return res 
+        .status(422)
+        .send({ error: `You're missing a "${requiredParameter}" property.` });
+    }
+  }
+  getForeignId = async () => {
+    const planets = await dbConnection('planets')
+      .select('title', "id")
+    const matchingPlanet = await planets.find(planet => {
+        if (planet.title === req.body.hostPlanet) {
+          return planet.id
+        }
+      })
+      if (!await matchingPlanet) {
+        return res.status(404).send('No host planet with the given name was found.')
+      }
+    return await matchingPlanet.id
+  }
+  const moon = {
+    moon: req.body.title,
+    planetId: await getForeignId()
+  }
+  await database('moons').insert(await moon, 'id')
+    .then(moon => {
+      res.status(201).json({ id: moon[0] })
+    })
+    .catch(error => {
+      res.status(500).json({ error })
+    })
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
 });
