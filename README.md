@@ -15,7 +15,7 @@ Clone down this repo, install the dependencies (npm install), and start the serv
 
 | URL  | METHOD  | OPTIONS |  
 |---|---|---|
-| http://localhost:3000/api/v1/planets | "GET"  | Not Needed 
+| http://localhost:3000/api/v1/planets | "GET"  | Not Needed |<br />
 **Response is an array of all planets in database:** [{<br />
 * id: 88,
 * title: "Venus",
