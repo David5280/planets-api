@@ -101,7 +101,7 @@ app.post('/api/v1/planets', (req, res) => {
     image2: req.body.image2,
     cutout: req.body.cutout
   }
-  
+
   database('planets').insert(planet, 'id')
     .then(planet => {
       res.status(201).json({ id: planet[0] })
@@ -154,7 +154,7 @@ app.delete('/api/v1/planets/:id', (req, res) => {
     .where({ id: requestId })
     .del()
     .then(() => res.status(202).json({ 
-      message: `Planet ${requestId} has been deleted`
+      message: `Planet ${requestId} has been deleted.`
     }))
     .catch(error => res.status(500).send(error))
 });
@@ -165,7 +165,7 @@ app.delete('/api/v1/moons/:id', (req, res) => {
     .where({ id: requestId })
     .del()
     .then(() => res.status(202).json({ 
-      message: `Moon ${requestId} has been deleted`
+      message: `Moon ${requestId} has been deleted.`
     }))
     .catch(error => res.status(500).send(error))
 });
