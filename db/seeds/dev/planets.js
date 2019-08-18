@@ -1,5 +1,5 @@
-const planets = require('../../../planetData.js');
-const moons = require('../../../moons.js');
+const planets = require('../../../original data/planetData.js');
+const moons = require('../../../original data/moons.js');
 
 const mashData = () => {
   return planets.reduce((acc, planet) => {
