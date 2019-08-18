@@ -16,28 +16,7 @@ Clone down this repo, install the dependencies (npm install), and start the serv
 | URL  | METHOD  | OPTIONS |  
 |---|---|---|
 | http://localhost:3000/api/v1/planets | "GET"  | Not Needed |<br />
-**Response is an array of all planets in database:** [{<br />
-* id: 88,
-* title: "Venus",
-* milesFromSun: "67.24 million",
-* climate: "The climate on Venus is widely known to be unpleasant...",
-* sunRevolution: "224.7",
-* atmosphere: "Carbon dioxide, nitrogen",
-* moons: "0",
-* description: "Second planet from the Sun...",
-* travelTime: "1.25",
-* diameter: "7,521 miles",
-* gravity: "0.9",
-* averageTemp: "896",
-* dayLength: "243 Earth days",
-* image: "image url",
-* namesake: "Roman goddess of love and beauty",
-* discovery: "Known to the ancients and visible to the naked eye",
-* successfulMissions: "Mariner 2, Venera 4...",
-* image2: "image2 url",
-* cutout: "cutout url",
-* created_at: "2019-08-18T03:58:43.108Z",
-* updated_at: "2019-08-18T03:58:43.108Z"<br />}]
+**Response is an array of all planets in database:** [{<br /> **id**: 88, **title**: "Venus", **milesFromSun**: "67.24 million", **climate**: "The climate on Venus is widely known to be unpleasant...", **sunRevolution**: "224.7", **atmosphere**: "Carbon dioxide, nitrogen", **moons**: "0", **description**: "Second planet from the Sun...", **travelTime**: "1.25", **diameter**: "7,521 miles", **gravity**: "0.9", **averageTemp**: "896", **dayLength**: "243 Earth days", **image**: "image url", **namesake**: "Roman goddess of love and beauty", **discovery**: "Known to the ancients and visible to the naked eye", **successfulMissions**: "Mariner 2, Venera 4...", **image2**: "image2 url", **cutout**: "cutout url", **created_at**: "2019-08-18T03:58:43.108Z", **updated_at**: "2019-08-18T03:58:43.108Z"<br />}] |
 
 #### GET ALL MOONS
 
