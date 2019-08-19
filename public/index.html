@@ -6,7 +6,7 @@
     <body>
       <header>
         <h1>Space-Out API</h1>
-        <a class="git-hub-rep" target="_blank" href="https://github.com/David5280/space-out-api">GetHub Repository</a>
+        <a class="git-hub-rep" target="_blank" href="https://github.com/David5280/space-out-api">GitHub Repository</a>
       </header>
       <main>
         <p>This RESTful API was built using Express, Knex, and PostgreSQL.  It provides data on the planets in our solar system (including pluto) as well as the names of their moons.</p>
@@ -30,43 +30,44 @@
             <td>/api/v1/moons</td>
             <td>"GET"</td>
             <td>NOT NEEDED</td>
-            <td>&nbsp;</td>
+            <td><strong>Response is an array of all moons in database:</strong> [{<br /> <strong>id:</strong> 88,<br /> <strong>moon</strong>: "Deimos",<br /> <strong>planetId</strong>: 89,<br /> <strong>created_at</strong> "2019-08-18T03:58:43.108Z",<br /> <strong>updated_at:</strong> "2019-08-18T03:58:43.108Z"<br />}]</td>
           </tr>
           <tr>
             <td>/api/v1/planets/:id</td>
             <td>"GET"</td>
             <td>NOT NEEDED</td>
-            <td></td>
+            <td><strong>Response is a single planet object with matching id:</strong>
+              [{<br /> <strong>id:</strong> 88,<br /> <strong>title:</strong> "Venus",<br /> <strong>milesFromSun:</strong> "67.24 million",<br /> <strong>climate:</strong> "The climate on Venus is widely known to be unpleasant...",<br /> <strong>sunRevolution:</strong> "224.7",<br /> <strong>atmosphere:</strong> "Carbon dioxide, nitrogen",<br /> <strong>moons:</strong> "0",<br /> <strong>description:</strong> "Second planet from the Sun...",<br /> <strong>travelTime:</strong> "1.25",<br /> <strong>diameter:</strong> "7,521 miles",<br /> <strong>gravity:</strong> "0.9",<br /> <strong>averageTemp:</strong> "896",<br /> <strong>dayLength:</strong> "243 Earth days",<br /> <strong>image:</strong> "image url",<br /> <strong>namesake:</strong> "Roman goddess of love and beauty",<br /> <strong>discovery:</strong> "Known to the ancients and visible to the naked eye",<br /> <strong>successfulMissions:</strong> "Mariner 2, Venera 4...",<br /> <strong>image2:</strong> "image2 url",<br /> <strong>cutout:</strong> "cutout url",<br /> <strong>created_at:</strong> "2019-08-18T03:58:43.108Z",<br /> <strong>updated_at:</strong> "2019-08-18T03:58:43.108Z"<br />}]</td>
           </tr>
           <tr>
             <td>/api/v1/moons/:id</td>
             <td>"GET"</td>
             <td>NOT NEEDED</td>
-            <td>&nbsp;</td>
+            <td><strong>Response is a single moon object with matching id:</strong> [{<br /> <strong>id:</strong> 88,<br /> <strong>moon</strong>: "Deimos",<br /> <strong>planetId</strong>: 89,<br /> <strong>created_at</strong> "2019-08-18T03:58:43.108Z",<br /> <strong>updated_at:</strong> "2019-08-18T03:58:43.108Z"<br />}]</td>
           </tr>
           <tr>
             <td>/api/v1/planets</td>
             <td>"POST"</td>
             <td><strong>title: string</strong> name of planet,<br /><strong>milesFromSun: string</strong>,<br /> <strong>climate: string</strong> brief description,<br /> <strong>sunRevolution: string</strong> length of one year,<br /><strong>atmosphere: string</strong> list of gases present,<br /><strong>moons: string</strong> number of moons,<br /><strong>description: string</strong> description of planet,<br /><strong>travelTime: string</strong> length relative to one earth year,<br /><strong>diameter</strong>: <strong>string</strong> miles in diameter,<br /><strong>gravity: string</strong> relative to Earth's gravity,<br /><strong>averageTemp: string</strong> Farenheight,<br /><strong>dayLength: string</strong> Number of Earth Days,<br /><strong>image: string</strong> image url,<br /><strong>namesake: string</strong> ,<br /><strong>discovery: string</strong> year and name if available,<br /><strong>successfulMissions: string</strong> list of successful spacecrafts,<br /><strong>image2: string</strong> second image url,<br /><strong>cutout: string</strong> cutout of planet</td>
-            <td>&nbsp;</td>
+            <td><strong>Response is the newly generated id of the new planet</strong>: {<br /><strong>id</strong>: 20 <br />} </td>
           </tr>
           <tr>
             <td>/api/v1/moons</td>
             <td>"POST"</td>
             <td><strong>moon: string</strong> name of new moon,<br /> <strong>hostPlanet:</strong> name of planet this new moon orbits</td>
-            <td>&nbsp;</td>
+            <td><strong>Response is the newly generated id of the new moon</strong>: {<br /><strong>id</strong>: 89 <br />} </td>
           </tr>
           <tr>
             <td>/api/v1/planets/:id</td>
             <td>"DELETE"</td>
             <td>NOT NEEDED</td>
-            <td>&nbsp;</td>
+            <td><strong>Response is a confirmation of deletion</strong>: {<br /><strong>message</strong>: "Planet [name of deleted planet] has been deleted." <br />} </td>
           </tr>
           <tr>
             <td>/api/v1/moons/:id</td>
             <td>"DELETE"</td>
             <td>NOT NEEDED</td>
-            <td>&nbsp;</td>
+            <td><strong>Response is a confirmation of deletion</strong>: {<br /><strong>message</strong>: "Moon [name of deleted moon] has been deleted." <br />} </td>
           </tr>
           </tbody>
           </table>
