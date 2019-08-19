@@ -10,6 +10,7 @@ app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Planets API';
 
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'));
+app.use(express.static('public'));
 app.use(express.json());
 
 app.listen(app.get('port'), () => {
