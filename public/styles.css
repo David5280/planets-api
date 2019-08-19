@@ -1,0 +1,20 @@
+body {
+  text-align: center;
+  background-color: black;
+  color: #b4b4b4;
+}
+
+.endpoints {
+  margin: auto;
+  border: 2px solid #b4b4b4;
+  color: white;
+}
+
+tr {
+  background-color: #535353;
+}
+
+td {
+  /* text-align: center; */
+  padding: 10px;
+}
