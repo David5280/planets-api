@@ -123,7 +123,12 @@ app.post('/api/v1/moons', async (req, res) => {
   const matchingPlanetId = await dbConnection('planets')
   .where('title', req.body.hostPlanet)
   .select('id')
-  .then(id => id[0].id)
+  .then(id => {
+    if (!id.length) {
+      return res.status(404).send(`No host planet named ${req.body.hostPlanet} was found.`)
+    }
+    return id[0].id
+  })
   const moon = {
     moon: req.body.title,
     planetId: await matchingPlanetId
